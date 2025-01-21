@@ -1,0 +1,29 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'courses/styles.css' %}">
+    <title>{% block title %}Online Courses{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Courses</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Opinions</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}
+            {% for review in list_of_reviews %}
+                <h3>{{ review.name }}: {{ review.rating }}</h3>
+                <p>{{ review.review_text }}</p>
+                <br>
+            {% endfor %}
+        {% endblock %}
+    </div>
+</body>
+</html>
