@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+import certifi
+import ssl
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bootstrap4",
     "courses.apps.CoursesConfig",
 ]
 
@@ -67,6 +76,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = "OnlineCourses.wsgi.application"
 
@@ -100,6 +111,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# # Logger
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'ERROR',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'error.log'),
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#     },
+# }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -126,3 +157,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Email settings
+# Specify SMTP protocol
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Specify SMTP server for sending emails
+EMAIL_HOST = 'smtp.gmail.com'
+# Specify port for the SMTP server
+EMAIL_PORT = 465
+# Specify whether to use TLS
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'hkowalski.fizyka@gmail.com'
+EMAIL_HOST_PASSWORD = 'vfizjzzunjhpdjee'
+
+EMAIL_SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())

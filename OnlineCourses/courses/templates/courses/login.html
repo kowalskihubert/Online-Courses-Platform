@@ -1,0 +1,67 @@
+{% extends "courses/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Physics & Math Academy - Logowanie{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <div class="login-container">
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="login-header">
+            <h1 class="section-title">Logowanie</h1>
+            <p class="section-description">
+                Zaloguj się, aby uzyskać dostęp do kursów i materiałów.
+            </p>
+        </div>
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <div class="input-wrapper username-field">
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                    <div class="form-errors">
+                        {{ form.username.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="input-wrapper password-field">
+                        {{ form.password|as_crispy_field }}
+                    </div>
+                    <div class="form-errors">
+                        {{ form.password.errors }}
+                    </div>
+                </div>
+            </div>
+            
+            {# Silently GET the next page (that we are trying to access #}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            {% endif %}
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-icon">🔒</span>
+                    Zaloguj się
+                </button>
+            </div>
+
+            <div class="form-links">
+                <a href="/courses/reset-password/" class="link">Zapomniałeś hasła?</a>
+                <a href="{% url 'register' %}" class="link">Nie masz konta? Zarejestruj się</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

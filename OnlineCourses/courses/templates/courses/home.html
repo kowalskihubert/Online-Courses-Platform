@@ -1,0 +1,112 @@
+{% extends "courses/base.html" %}
+
+{% load static %}
+
+{% block title %}Home - Physics & Math Academy{% endblock %}
+
+{% block extra_scripts %}<script src="{% static 'courses/js/home.js' %}" defer></script>{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h2>Efektywne Przygotowanie do Matury</h2>
+        <p>Profesjonalne kursy z fizyki i matematyki</p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-content">
+        <div class="about-photo">
+            <div class="profile-frame"></div>
+        </div>
+        <div class="about-text">
+            <h2>Hubert Kowalski, Inż.</h2>
+            <p class="subtitle">Korepetytor Fizyki i Matematyki</p>
+
+            <div class="bio-intro">
+                <p>Cześć! Jestem Hubert, student III roku <strong>Inżynierii i Analizy Danych</strong>
+                    na Politechnice Warszawskiej. Na co dzień tworzę modele AI i dzielę się
+                    praktyczną wiedzą. Jako <strong>11-krotny Laureat konkursów wojewódzkich</strong>
+                    (matematyka, fizyka, chemia) wiem, jak efektywnie przygotować Cię do matury!
+                    </p>
+            </div>
+
+            <div class="bio-courses">
+                <h3 class="subsection-heading">Moje kursy to:</h3>
+                <ul class="bio-benefits-list">
+                    <li><strong>Skupienie na konkretach:</strong> Przygotowanie do matury i konkursów oparte na sprawdzonych metodach</li>
+                    <li><strong>Nowoczesne podejście:</strong> Przykłady z obszaru AI i technologii</li>
+                    <li><strong>Zero nudy:</strong> Praktyczne zadania i przyjazna atmosfera</li>
+                </ul>
+            </div>
+
+            <div class="bio-cta">
+                <p id="bio-cta-p">Jeśli szukasz kogoś, kto nie tylko nauczy Cię wzorów, ale też rozbudzi ciekawość świata – <strong>zapraszam na moje kursy!</strong></p>
+                <p class="signature">Do zobaczenia na lekcji! 🚀</p>
+            </div>
+
+            <div class="teaching-methods">
+                <h3>Metody Nauczania:</h3>
+                <ul>
+                    <li>Interaktywne prezentacje multimedialne</li>
+                    <li>Zestawy zadań maturalnych</li>
+                    <li>Regularne oceny postępów </li>
+                    <li>Dostępność na indywidualnych konsultacjach</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Lat doświadczenia</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Zadowolonych uczniów</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Zdawalność egzaminów</div>
+        </div>
+    </div>
+</section>
+
+<section class="courses-preview">
+    <h2>Przedmioty</h2>
+    <div class="subject-cards">
+        <div class="subject-card physics">
+            <h3>Fizyka</h3>
+            <ul>
+                <li>Mechanika</li>
+                <li>Termodynamika</li>
+                <li>Elektromagnetyzm</li>
+                <li>I inne...</li>
+            </ul>
+        </div>
+        <div class="subject-card math">
+            <h3>Matematyka</h3>
+            <ul>
+                <li>Liczby i działania</li>
+                <li>Funkcje</li>
+                <li>Analiza Matematyczna</li>
+                <li>I inne...</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Zacznij Historię Swojego Sukcesu</h2>
+        <p>Dołącz do ponad 50 uczniów, którzy zdali swój egzamin dojrzałości</p>
+        <div class="cta-buttons">
+            <a href={% url 'reviews' %} class="btn btn-opinions">Zobacz Opnie Uczniów</a>
+            <a href={% url 'courses' %} class="btn btn-courses">Odkryj Kursy</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'courses/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Physics & Math Academy - Kursy
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'courses/js/courses.js' %}" defer></script>
+{% endblock %}
+
+
+{% block content %}
+    <section class="courses-section">
+        <div class="courses-container">
+            <div class="courses-header">
+                <h1 class="section-title">Dostępne kursy</h1>
+                <p class="section-description">
+                    Wybierz dział, który Cię interesuje i do dzieła!
+                </p>
+            </div>
+            
+            <div class="subject-filter">
+                <button class="filter-btn active" data-subject="all">Wszystkie</button>
+                <button class="filter-btn" data-subject="PHYS">Fizyka</button>
+                <button class="filter-btn" data-subject="MATH">Matematyka</button>
+            </div>
+            
+            <div class="presentations-grid">
+                {% for material in materials %}
+                <div class="presentation-card" data-subject="{{ material.subject }}">
+                    <h3>{{ material.topic }}</h3>
+                    <div class="slide-container">
+                        {{ material.embed_code|safe }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+           
+        </div>
+    </section>
+{% endblock %}

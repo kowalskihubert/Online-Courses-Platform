@@ -1,0 +1,22 @@
+{% extends 'courses/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Physics & Math Academy - Rejestracja
+{% endblock %}
+
+{% block content %}
+<section class="register-section">
+    <div class="register-container">
+        <h1 class="section-title">Rejestracja</h1>
+        <form method="post" class="register-form">
+            {% csrf_token %}
+            <table id="register-form-table">
+                {{ form.as_table }}
+            </table>
+            <button type="submit" class="btn btn-primary" id="register-btn">Zarejestruj</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+

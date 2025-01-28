@@ -23,22 +23,28 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-brand">
-            <a href="#">
+            <a href={% url 'home' %}>
                 <img src="{% static 'courses/img/logo.png' %}" alt="Academy Logo" class="logo">
             </a>
         </div>
     
         <div class="nav-center">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">Opinions</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href={% url 'home' %}>Strona Główna</a></li>
+                <li><a href={% url 'courses' %}>Kursy</a></li>
+                <li><a href={% url 'reviews' %}>Opinie</a></li>
+                <li><a href={% url 'contact' %}>Kontakt</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="#">Logout</a></li>
+                    <li>
+                        <form id="form1" action={% url 'logout' %} method="post">
+                            {% csrf_token %}
+                            <a href="javascript:;" onclick="document.getElementById('form1').submit();">Wyloguj</a>
+                            <input type="hidden" name="mess" value=""/>
+                        </form>
+                    </li>
                 {% else %}
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href={% url 'login' %}>Zaloguj</a></li>
+                    <li><a href={% url 'register' %}>Zarejestruj</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -56,10 +62,10 @@
     <!-- Header Section -->
     <header class="page-header">
         <div class="profile-container">
-            <div class="profile-photo"
-                 style="background-image: url({% static 'courses/img/logo_strip.png' %})"
-                 aria-label="Your profile picture">
-            </div>
+{#            <div class="profile-photo"#}
+{#                 style="background-image: url({% static 'courses/img/logo_strip.png' %})"#}
+{#                 aria-label="Company Logo">#}
+{#            </div>#}
             <h1 class="header-title">Physics & Math Academy</h1>
             <p class="header-subtitle">Kursy Przygotowujące do Matury</p>
         </div>
@@ -86,13 +92,13 @@
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Contact Details</h4>
+                <h4>Dane Kontaktowe</h4>
                 <p>Email: contact@example.com</p>
                 <p>Phone: +48 123 456 789</p>
             </div>
             
             <div class="footer-section">
-                <h4>Quick Links</h4>
+                <h4>Dodatkowe Linki</h4>
                 <ul>
                     <li><a href="">Privacy Policy</a></li>
                     <li><a href="">Terms of Service</a></li>
@@ -100,20 +106,23 @@
             </div>
             
             <div class="footer-section social-section">
-                <h4>Follow Us on Social Media</h4>
+                <h4>Odwiedź Nasze Social Media</h4>
                 <div class="footer-social">
-                    <a href="#" class="social-link" aria-label="Facebook">
+                    <a href="https://www.facebook.com/hubert.hubert.3538/" class="social-link" aria-label="Facebook">
                         <img src="{% static 'courses/img/facebook-icon.svg' %}" alt="Facebook">
                     </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/hubert-kowalski-1b19bb1a3/" class="social-link" aria-label="LinkedIn">
                         <img src="{% static 'courses/img/linkedin-icon.svg' %}" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com/kowalskihubert" class="social-link" aria-label="GitHub">
+                        <img src="{% static 'courses/img/github-icon.png' %}" alt="GitHub">
                     </a>
                 </div>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; {{ current_year }} Physics & Math Academy. All rights reserved.</p>
+            <p>&copy; {{ current_year }} Physics & Math Academy. Wszystkie prawa zastrzeżone.</p>
             {% if user.is_superuser %}
             <a href="{% url 'admin:index' %}" class="admin-link">Admin Panel</a>
             {% endif %}
